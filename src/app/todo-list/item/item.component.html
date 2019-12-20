@@ -2,15 +2,15 @@
   <ul class="filters">
     <li>
       <a [class.selected]="checkStatus(todoStatusType.All)"
-          (click)="setStatus(todoStatusType.All)">All</a>
+          (click)="setStatus(todoStatusType.All, $event)">All</a>
     </li>
     <li>
       <a [class.selected]="checkStatus(todoStatusType.Open)"
-          (click)="setStatus(todoStatusType.Open)">Open</a>
+          (click)="setStatus(todoStatusType.Open, $event)">Open</a>
     </li>
     <li>
       <a [class.selected]="checkStatus(todoStatusType.Done)"
-          (click)="setStatus(todoStatusType.Done)">Done</a>
+          (click)="setStatus(todoStatusType.Done, $event)">Done</a>
     </li>
   </ul>
 </nav>

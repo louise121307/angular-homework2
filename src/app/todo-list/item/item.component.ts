@@ -24,8 +24,16 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  setStatus(status: number): void {
+  setStatus(status: number, event: MouseEvent): void {
+
+    if (event.ctrlKey && status === TodoStatusType.Open) {
+      this.getAllList().forEach((todo) => { todo.setCompleted(false); });
+    } else if (event.ctrlKey && status === TodoStatusType.Done) {
+      this.getAllList().forEach((todo) => { todo.setCompleted(true); });
+    }
+
     this.status = status;
+
   }
 
   checkStatus(status: number): boolean {

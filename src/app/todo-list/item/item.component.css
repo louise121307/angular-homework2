@@ -109,10 +109,11 @@
   text-align: center;
 	font-size: 16px;
   color: #cc9a9a;
+  cursor: pointer;
 }
 
 .todo-list li .destroy:hover {
-	color: #af5b5e;
+  color: #af5b5e;
 }
 
 .todo-list li .destroy:after {
