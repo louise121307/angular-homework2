@@ -1,0 +1,66 @@
+import { Component, OnInit } from '@angular/core';
+
+// Service
+import { TodoListService } from '../todo-list.service';
+
+// Enum
+import { TodoStatusType } from '../todo-status-type.enum';
+
+// Class
+import { Todo } from '../todo.model';
+
+@Component({
+  selector: 'app-item',
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.css']
+})
+export class ItemComponent implements OnInit {
+
+  todoStatusType = TodoStatusType;
+  private status = TodoStatusType.All;
+
+  constructor(public todoListService: TodoListService) { }
+
+  ngOnInit() {
+  }
+
+  setStatus(status: number): void {
+    this.status = status;
+  }
+
+  checkStatus(status: number): boolean {
+    return this.status === status;
+  }
+
+  getList(): Todo[] {
+
+    let list: Todo[] = [];
+
+    switch (this.status) {
+
+      case TodoStatusType.Open:
+        list = this.todoListService.getListWithCompleted(false);
+        break;
+
+      case TodoStatusType.Done:
+        list = this.todoListService.getListWithCompleted(true);
+        break;
+
+      default:
+        list = this.todoListService.getList();
+        break;
+
+    }
+
+    return list;
+
+  }
+
+  getAllList(): Todo[] {
+    return this.todoListService.getList();
+  }
+
+  remove(index: number): void {
+    this.todoListService.remove(index);
+  }
+}
